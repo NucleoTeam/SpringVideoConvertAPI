@@ -1,0 +1,37 @@
+group 'AnimeCapSpring'
+version '1.0-SNAPSHOT'
+
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+    }
+}
+
+jar {
+    baseName = 'animecap'
+    version =  '0.0.1'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.springframework.boot:spring-boot-configuration-processor")
+    compile group:'net.bramp.ffmpeg', name:'ffmpeg', version:'0.6.1'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

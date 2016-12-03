@@ -1,0 +1,7 @@
+# Gradle build artifacts
+build
+.gradle
+
+# IDEA stuff
+.idea
+*.iml
