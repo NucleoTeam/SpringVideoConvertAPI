@@ -5,3 +5,7 @@ build
 # IDEA stuff
 .idea
 *.iml
+
+#Video Converter stuff
+uploads
+sources
