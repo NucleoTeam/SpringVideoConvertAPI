@@ -59,12 +59,12 @@ public class VideoController {
         }
         return videoRepo.save(v);
     }
-    @RequestMapping("/")
+    @RequestMapping("/original")
     public Video video(@RequestParam("uuid") String vUUID) {
         return videoRepo.findOne(videoRepo.findByOriginal(vUUID).id);
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/converted")
     public List<Video> converted(@RequestParam("uuid") String vUUID, @RequestParam("preset") String preset) {
         return videoRepo.findConvertedByOriginalAndPreset(vUUID, preset);
     }
