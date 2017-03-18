@@ -17,7 +17,7 @@ repositories {
 
 buildscript {
     ext {
-        springBootVersion = '1.4.2.RELEASE'
+        springBootVersion = '1.5.2.BUILD-SNAPSHOT'
     }
     repositories {
         mavenCentral()
@@ -40,11 +40,11 @@ jar {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile("org.springframework.boot:spring-boot-devtools")
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-neo4j')
     compile("org.springframework.boot:spring-boot-configuration-processor")
     compile group:'net.bramp.ffmpeg', name:'ffmpeg', version:'0.6.1'
-    compile('org.springframework.boot:spring-boot-starter-data-neo4j')
+
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

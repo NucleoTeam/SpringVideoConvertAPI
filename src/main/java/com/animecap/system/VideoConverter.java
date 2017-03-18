@@ -1,7 +1,9 @@
 package com.animecap.system;
+import com.animecap.system.neo4j.PersistenceContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +16,7 @@ import java.util.HashMap;
 
 @SpringBootApplication
 @EnableScheduling
+@Import(PersistenceContext.class)
 public class VideoConverter {
     public static String sourceDirectory = "sources/";
     public static String uploadDirectory = "uploads/";
