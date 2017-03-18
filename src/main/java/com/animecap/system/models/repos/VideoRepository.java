@@ -15,7 +15,7 @@ import java.util.List;
 public interface VideoRepository extends GraphRepository<Video> {
     Video findByOriginal(String original);
 
-    @Query("MATCH (n:Video{original:{original}})<-[:SOURCE_VIDEO]-(t:Task)-[:HAS_PRESET]->(p:VideoPreset{name:{preset}}), (t)-[:NEW_VIDEO]->(video:Video) return video")
-    List<Video> findConvertedByOriginalAndPreset(@Param("original") String original, @Param("preset") String preset);
+    @Query("MATCH (n:Video{original:{original}})<-[:SOURCE_VIDEO]-(t:Task)-[:HAS_PRESET]->(p:VideoPreset{name:{preset}}), (t)-[:NEW_VIDEO]->(video:Video) return ID(video)")
+    List<Long> findConvertedByOriginalAndPreset(@Param("original") String original, @Param("preset") String preset);
 
 }

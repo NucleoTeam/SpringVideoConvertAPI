@@ -65,8 +65,8 @@ public class VideoController {
     }
 
     @RequestMapping("/converted")
-    public List<Video> converted(@RequestParam("uuid") String vUUID, @RequestParam("preset") String preset) {
-        return videoRepo.findConvertedByOriginalAndPreset(vUUID, preset);
+    public Object converted(@RequestParam("uuid") String vUUID, @RequestParam("preset") String preset) {
+        return videoRepo.findAll(videoRepo.findConvertedByOriginalAndPreset(vUUID, preset));
     }
 
 
