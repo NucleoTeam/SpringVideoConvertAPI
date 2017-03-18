@@ -36,7 +36,7 @@ public class VCThread{
 
     @Scheduled(fixedRate = 15000)
     public void convertVideo() {
-        System.out.println("Starting Video Converting");
+        //System.out.println("Starting Video Converting");
         if(!running) {
             running=true;
             Task task = taskRepo.findByCompleted(0);
