@@ -1,12 +1,17 @@
 package com.animecap.system;
 import com.animecap.system.neo4j.PersistenceContext;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.MultipartConfigElement;
 import java.io.File;
 import java.util.HashMap;
 
@@ -16,6 +21,7 @@ import java.util.HashMap;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableAutoConfiguration
 @Import(PersistenceContext.class)
 public class VideoConverter {
     public static String sourceDirectory = "sources/";
@@ -35,5 +41,12 @@ public class VideoConverter {
         props.put("server.port", port);
 
         new SpringApplicationBuilder().sources(VideoConverter.class).properties(props).run(args);
+    }
+    @Bean
+    MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("2000MB");
+        factory.setMaxRequestSize("2000MB");
+        return factory.createMultipartConfig();
     }
 }
