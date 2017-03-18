@@ -30,8 +30,8 @@ ext {
     buildnum = "$System.env.BUILD_NUMBER"
 }
 jar {
-    baseName = 'animecap'
-    version =  '0.0.1'
+    baseName = 'videoconverter'
+    version =  "${buildnum}.${revision}"
 }
 
 dependencies {
