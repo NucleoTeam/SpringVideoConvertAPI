@@ -20,9 +20,15 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+        classpath 'org.ajoberstar:grgit:1.1.0'
     }
 }
-
+import groovy.json.JsonSlurper
+ext {
+    git = org.ajoberstar.grgit.Grgit.open(file('./'))
+    revision = git.head().abbreviatedId
+    buildnum = "$System.env.BUILD_NUMBER"
+}
 jar {
     baseName = 'animecap'
     version =  '0.0.1'
