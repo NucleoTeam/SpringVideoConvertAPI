@@ -50,6 +50,10 @@ public class VideoController {
         Runtime rt = Runtime.getRuntime();
         Process pr = rt.exec("ffmpeg -i " +VideoConverter.sourceDirectory+v.getOriginal()+ " -ss 00:03:21.435 -vframes 1 -vf scale=300:168 "+VideoConverter.sourceDirectory+v.getOriginal() + ".png");
         pr.waitFor();
+        rt = Runtime.getRuntime();
+        pr = rt.exec("ffmpeg -i " +VideoConverter.sourceDirectory+v.getOriginal()+" -map 0:s:0 " +VideoConverter.sourceDirectory+v.getOriginal()+ ".vtt");
+        pr.waitFor();
+
         try {
             FFprobe ffprobe = new FFprobe("ffprobe");
             FFmpegProbeResult probeResult = ffprobe.probe(VideoConverter.sourceDirectory+v.getOriginal());
