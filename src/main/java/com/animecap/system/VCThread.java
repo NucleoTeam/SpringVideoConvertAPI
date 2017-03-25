@@ -12,10 +12,10 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 import net.bramp.ffmpeg.probe.FFmpegProbeResult;
 import net.bramp.ffmpeg.probe.FFmpegStream;
+import net.bramp.ffmpeg.progress.Progress;
+import net.bramp.ffmpeg.progress.ProgressListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -71,8 +71,13 @@ public class VCThread{
                                 .done();
                         System.out.println("executing");
                         FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
-                        executor.createJob(builder).run();
-                        executor.createTwoPassJob(builder).run();
+                        executor.createJob(builder, new ProgressListener() {
+                            @Override
+                            public void progress(Progress p) {
+                                System.out.println(p.progress);
+                                System.out.println("");
+                            }
+                        }).run();
                         try {
                             FFmpegProbeResult probeResult = ffprobe.probe(VideoConverter.sourceDirectory + task.getNewVideo().get(0).getOriginal());
                             for(FFmpegStream fs :probeResult.getStreams()){
