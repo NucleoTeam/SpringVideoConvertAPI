@@ -45,8 +45,8 @@ public class VideoConverter {
     @Bean
     MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize("2048MB");
-        factory.setMaxRequestSize("2048MB");
+        factory.setMaxFileSize("5120MB");
+        factory.setMaxRequestSize("5120MB");
         return factory.createMultipartConfig();
     }
 }
