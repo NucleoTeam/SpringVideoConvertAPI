@@ -86,7 +86,7 @@ public class VCThread{
                             }
                             videoRepo.save(task.getNewVideo().get(0));
                             Runtime rt = Runtime.getRuntime();
-                            Process pr = rt.exec("ffmpeg -i " +VideoConverter.sourceDirectory+ task.getNewVideo().get(0).getOriginal() + " -ss 00:03:21.435 -vframes 1 -vf scale=1280:720 "+VideoConverter.sourceDirectory + task.getNewVideo().get(0).getOriginal() + ".png");
+                            Process pr = rt.exec("ffmpeg -i " +VideoConverter.sourceDirectory+ task.getNewVideo().get(0).getOriginal() + " -ss 00:03:00.435 -vframes 1 -vf scale=1280:720 "+VideoConverter.sourceDirectory + task.getNewVideo().get(0).getOriginal() + ".png");
                             pr.waitFor();
                         }catch (Exception e){
                             e.printStackTrace();
