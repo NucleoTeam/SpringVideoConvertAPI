@@ -24,7 +24,7 @@ import java.util.HashMap;
 @EnableAutoConfiguration
 @Import(PersistenceContext.class)
 public class VideoConverter {
-    public static String sourceDirectory = "sources/";
+    public static String sourceDirectory = "/backup/sources/";
     public static String uploadDirectory = "uploads/";
     public static void main(String[] args) {
         System.setProperty("spring.config.name", "www-server");
